@@ -1,5 +1,151 @@
+
+<mat-toolbar>
+  <button  id="toolbarMenu" (click)="onToolbarMenuToggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+
+
+<mat-sidenav-container
+  id="sidenavContainer"
+ fullscreen>
+  <mat-sidenav
+    mode="side"
+    #sidenav
+    id="sidenav"
+    [class.menu-open]="isMenuOpen"
+    [class.menu-close]="!isMenuOpen"
+    opened>
+    
+    <mat-list id="menus">
+      <mat-card>
+        <mat-card-header>
+          <div 
+            mat-card-avatar 
+            class="avatar"></div>
+
+          <mat-card-title>John Doe</mat-card-title>
+          <mat-card-subtitle>Internal</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+      <mat-list-item>
+        <button 
+        class="menu-item"
+          mat-flat-button>
+          <mat-icon>dashboard</mat-icon>
+        Dashboard</button>
+      </mat-list-item>
+
+      <mat-list-item>
+          <button 
+          class="menu-item"
+            mat-flat-button>
+            <mat-icon>work</mat-icon>
+          Project</button>
+        </mat-list-item>
+
+        <mat-list-item>
+            <button 
+            class="menu-item"
+              mat-flat-button>
+              <mat-icon>settings_application</mat-icon>
+            Settings</button>
+          </mat-list-item>
+
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content
+  [ngStyle]="{ 'margin-left.px': contentMargin }"
+  >
+  <mat-card class="cardcamara">
+    <div style="text-align:center;">
+      <mat-card-title class="cardcamara-title">
+        TO DO
+      </mat-card-title>
+    </div>
+
+    <div class="boxcamera">
+      <zxing-scanner 
+      [torch]="torch"
+      [enable]="scannerEnabled"
+      *ngIf="scannerEnabled" #scanner (scanSuccess)="scanSuccessHandler($event)">
+      </zxing-scanner>
+
+    </div>
+      <button (click)="enableScanner()"  type="button" class="btn btn-success">LEER
+          OTRO</button>
+          <button (click)="enableTorch()"  type="button" class="btn btn-success">TORCH</button>
+    
+    
+  
+  <p > dato vale :{{qrinfo}}</p>
+  
+  
+  
+  <button routerLink="/home" >Volver </button>
+</mat-card>
+
+<!--
+  <mat-selection-list class="dash-list">
+      <mat-list-option *ngFor="let todo of task">
+        {{todo}}
+      </mat-list-option>
+    </mat-selection-list>
+    -->
+       
+  </mat-sidenav-content>
+  
+</mat-sidenav-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <h1> Bienvenido al qr lector</h1>
 
-<ngx-scanner-qrcode #action="scanner" (data)="output = $event"></ngx-scanner-qrcode>
-<span>{{output}}</span>
-<button (click)="action.toggleCamera()" [disabled]="action.isLoading">{{action.isStart ? 'Stop' : 'Start'}}</button>
+
+<div [style.padding.px]="20">
+    <h1> ngx-scanner-qrcode </h1>
+  
+   
+    <ngx-scanner-qrcode #action="scanner" (data)="output = $event" (error)="onError($event)"></ngx-scanner-qrcode>
+  
+   
+    <p class="data">{{ output }}</p>
+  
+   
+    <p *ngIf="action.isLoading">⌛ Loading video...</p>
+  
+   
+    <button (click)="action.toggleCamera()" class="btn" [class.btn-info]="!action.isStart" [class.btn-warning]="action.isStart" [disabled]="action.isLoading">
+      <img *ngIf="!action.isStart" src="https://img.icons8.com/ios/50/000000/no-camera--v2.png" width="30px"/>
+      <img *ngIf="action.isStart" src="https://img.icons8.com/ios/50/000000/no-camera--v1.png" width="30px"/>
+    </button>
+  
+    <h5>Author: DaiDH</h5>
+  </div>
+   -->
+   
